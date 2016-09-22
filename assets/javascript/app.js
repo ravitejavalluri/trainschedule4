@@ -19,6 +19,7 @@ var tTime = "";
 var tFrequency = 0;
 var arrival = "";
 var minutes = 0;
+var trainCount = 1;
 
 //adding trains to list
 $("#addTrain").on("click", function() {
@@ -56,7 +57,10 @@ $("#addTrain").on("click", function() {
 
 //watches for child added to database
 //placing in values of variables
-database.ref().on("child_added", function(childSnapshot) {
+//autoUpdate function updates the page every minute without reloading the page
+var autoUpdate = function() {
+    $('#trainData > tbody').empty();
+  database.ref().on("child_added", function(childSnapshot) {
     tName = childSnapshot.val().tName;
     tDestination = childSnapshot.val().tDestination;
     tTime = childSnapshot.val().tTime;
@@ -82,28 +86,36 @@ database.ref().on("child_added", function(childSnapshot) {
     var arrival = moment().add(minutes, "minutes")
 
     //checking values
-    console.log("current: " + moment(current).format("HH:mm"));
-    console.log("trainTime: " + trainTime);
-    console.log("difference: " + difference);
-    console.log("difference2: " + difference2);
-    console.log("minutes: " + minutes);
-    console.log("arrival: " + moment(arrival).format("HH:mm A"));
+    // console.log("current: " + moment(current).format("HH:mm"));
+    // console.log("trainTime: " + trainTime);
+    // console.log("difference: " + difference);
+    // console.log("difference2: " + difference2);
+    // console.log("minutes: " + minutes);
+    // console.log("arrival: " + moment(arrival).format("hh:mm A"));
+
+    // var remove = $("<button>");
+    // remove.attr("data-number", trainCount);
+    // remove.addClass("cancel");
+    // remove.text("Cancel");
+    // $('#data-' + trainCount).prepend(remove);
+    // trainCount++;
 
     // appending information to train table
-    $('#trainData >tbody').append("<tr><td>" + childSnapshot.val().tName + "</td><td>" + childSnapshot.val().tDestination + "</td><td>" + childSnapshot.val().tFrequency + "</td><td>" + moment(arrival).format("hh:mm A") + "</td><td>" + minutes + "</td>");
-
-    //appending button to erase from the table
-    // var close = $("<button>");
-    // close.addClass("cancel");
-    // close.append("Cancel");
-    // $('tr').prepend(close);
-
+    $('#trainData >tbody').append("<tr><td>" + childSnapshot.val().tName + "</td><td>" + childSnapshot.val().tDestination + "</td><td>" + childSnapshot.val().tFrequency + "</td><td>" + moment(arrival).format("hh:mm A") + "</td><td>" + minutes + "</td></tr>");
 // error code
 }, function(errorObject){
     console.log("There was an error: " + errorObject.code);
 });
 // $(document).on('click', '.cancel', function(){
-//     $(this).empty();
+//     var number = $(this).data('number');
+//     $('#item-' + number).empty();
+//     return false;
 // });
+};
 
+var interval = 1000 * 60;
+
+setInterval(autoUpdate, interval);
+
+autoUpdate();
 });
