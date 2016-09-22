@@ -18,6 +18,6 @@ img {
 	height: 300px;
 }
 
-#in, #out {
-	text-align: right;
+#user-message {
+	color: #ffffff;
 }

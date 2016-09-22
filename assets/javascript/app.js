@@ -29,7 +29,7 @@ firebase.auth().signInWithPopup(provider).then(function(result) {
   var token = result.credential.accessToken;
   // The signed-in user info.
   var user = result.user;
-  $('#user-message').html("Welcome, " + user.displayName + "!");
+  $('#user-message').text("Welcome, " + user.displayName + "!");
 }).catch(function(error) {
   // Handle Errors here.
   var errorCode = error.code;
@@ -56,6 +56,7 @@ $('#in').on('click', function(){
 
 $('#out').on('click', function(){
     logout();
+    $('#user-message').empty();
     logged = false;
 });
 
