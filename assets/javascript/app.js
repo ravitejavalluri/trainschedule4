@@ -10,6 +10,16 @@ var config = {
 firebase.initializeApp(config);
 
 var database = firebase.database();
+// variables 
+
+var tName = "";
+var tDestination = "";
+var tTime = "";
+var tFrequency = 0;
+var arrival = "";
+var minutes = 0;
+var trainCount = 1;
+var logged = false;
 
 //Google sign-in
 var provider = new firebase.auth.GoogleAuthProvider();
@@ -41,24 +51,20 @@ firebase.auth().signOut().then(function() {
 
 $('#in').on('click', function(){
     login();
+    logged = true;
 });
 
 $('#out').on('click', function(){
     logout();
+    logged = false;
 });
-
-// variables 
-
-var tName = "";
-var tDestination = "";
-var tTime = "";
-var tFrequency = 0;
-var arrival = "";
-var minutes = 0;
-var trainCount = 1;
 
 //adding trains to list
 $("#addTrain").on("click", function() {
+    if (logged == false) {
+        alert("Please log-in to add trains");
+        return false;
+    } else {
     //data stored in variables
     tName = $('#traininput').val().trim();
     tDestination = $('#destinationinput').val().trim();
@@ -88,6 +94,7 @@ $("#addTrain").on("click", function() {
     tFrequency = $('#frequencyinput').val("");
 
     return false;
+}
 }
 });
 

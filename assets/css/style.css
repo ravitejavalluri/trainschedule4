@@ -17,3 +17,7 @@ img {
 	margin-right: 50px;
 	height: 300px;
 }
+
+#in, #out {
+	text-align: right;
+}
