@@ -18,58 +18,58 @@ var tTime = "";
 var tFrequency = 0;
 var arrival = "";
 var minutes = 0;
-var trainCount = 1;
+// var trainCount = 1;
 var logged = false;
 
 //Google sign-in
 var provider = new firebase.auth.GoogleAuthProvider();
-function login() {
-firebase.auth().signInWithPopup(provider).then(function(result) {
-  // This gives you a Google Access Token. You can use it to access the Google API.
-  var token = result.credential.accessToken;
-  // The signed-in user info.
-  var user = result.user;
-  $('#user-message').text("Welcome, " + user.displayName + "!");
-}).catch(function(error) {
-  // Handle Errors here.
-  var errorCode = error.code;
-  var errorMessage = error.message;
-  // The email of the user's account used.
-  var email = error.email;
-  // The firebase.auth.AuthCredential type that was used.
-  var credential = error.credential;
-  // ...
-});
-};
-function logout(){
-firebase.auth().signOut().then(function() {
-  // Sign-out successful.
-}, function(error) {
-  console.log(error.code);
-});
-};
+// function login() {
+// firebase.auth().signInWithPopup(provider).then(function(result) {
+//   // This gives you a Google Access Token. You can use it to access the Google API.
+//   var token = result.credential.accessToken;
+//   // The signed-in user info.
+//   var user = result.user;
+//   $('#user-message').text("Welcome, " + user.displayName + "!");
+// }).catch(function(error) {
+//   // Handle Errors here.
+//   var errorCode = error.code;
+//   var errorMessage = error.message;
+//   // The email of the user's account used.
+//   var email = error.email;
+//   // The firebase.auth.AuthCredential type that was used.
+//   var credential = error.credential;
+//   // ...
+// });
+// };
+// function logout(){
+// firebase.auth().signOut().then(function() {
+//   // Sign-out successful.
+// }, function(error) {
+//   console.log(error.code);
+// });
+// };
 
-$('#in').on('click', function(){
-    login();
-    logged = true;
-});
+// $('#in').on('click', function(){
+//     login();
+//     logged = true;
+// });
 
-$('#out').on('click', function(){
-    logout();
-    $('#user-message').empty();
-    logged = false;
-});
+// $('#out').on('click', function(){
+//     logout();
+//     $('#user-message').empty();
+//     logged = false;
+// });
 
 //adding trains to list
 $("#addTrain").on("click", function() {
-    if (logged == false) {
-        alert("Please log-in to add trains");
-        tName = $('#traininput').val("");
-    	tDestination = $('#destinationinput').val("");
-    	tTime = $('#timeinput').val("");
-    	tFrequency = $('#frequencyinput').val("");
-        return false;
-    } else {
+    // if (logged == false) {
+    //     alert("Please log-in to add trains");
+    //     tName = $('#traininput').val("");
+    // 	tDestination = $('#destinationinput').val("");
+    // 	tTime = $('#timeinput').val("");
+    // 	tFrequency = $('#frequencyinput').val("");
+    //     return false;
+    // } else {
     //data stored in variables
     tName = $('#traininput').val().trim();
     tDestination = $('#destinationinput').val().trim();
@@ -99,7 +99,7 @@ $("#addTrain").on("click", function() {
     tFrequency = $('#frequencyinput').val("");
 
     return false;
-}
+// }
 }
 });
 
