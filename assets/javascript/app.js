@@ -64,6 +64,10 @@ $('#out').on('click', function(){
 $("#addTrain").on("click", function() {
     if (logged == false) {
         alert("Please log-in to add trains");
+        tName = $('#traininput').val("");
+    	tDestination = $('#destinationinput').val("");
+    	tTime = $('#timeinput').val("");
+    	tFrequency = $('#frequencyinput').val("");
         return false;
     } else {
     //data stored in variables
