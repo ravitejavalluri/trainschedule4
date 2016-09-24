@@ -19,7 +19,7 @@ var tFrequency = 0;
 var arrival = "";
 var minutes = 0;
 // var trainCount = 1;
-var logged = false;
+// var logged = false;
 
 //Google sign-in
 var provider = new firebase.auth.GoogleAuthProvider();
