@@ -91,8 +91,7 @@ $("#addTrain").on("click", function() {
         tFrequency: tFrequency,
         dateAdded: firebase.database.ServerValue.TIMESTAMP
     });
-    $('#trainData >tbody').append("<tr><td>" + childSnapshot.val().tName + "</td><td>" + childSnapshot.val().tDestination + "</td><td>" + childSnapshot.val().tFrequency + "</td><td>" + moment(arrival).format("hh:mm A") + "</td><td>" + minutes + "</td></tr>");
-
+    
     //clear out entries
     tName = $('#traininput').val("");
     tDestination = $('#destinationinput').val("");
@@ -144,7 +143,7 @@ var autoUpdate = function() {
 
 
     // appending information to train table
-    $('#trainData >tbody').append("<tr><td>" + childSnapshot.val().tName + "</td><td>" + childSnapshot.val().tDestination + "</td><td>" + childSnapshot.val().tFrequency + "</td><td>" + moment(arrival).format("hh:mm A") + "</td><td>" + minutes + "</td></tr>");
+    // $('#trainData >tbody').append("<tr><td>" + childSnapshot.val().tName + "</td><td>" + childSnapshot.val().tDestination + "</td><td>" + childSnapshot.val().tFrequency + "</td><td>" + moment(arrival).format("hh:mm A") + "</td><td>" + minutes + "</td></tr>");
 // error code
 }, function(errorObject){
     console.log("There was an error: " + errorObject.code);
