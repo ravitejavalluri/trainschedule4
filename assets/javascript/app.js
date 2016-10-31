@@ -90,7 +90,8 @@ $("#addTrain").on("click", function() {
         tTime: tTime,
         tFrequency: tFrequency,
         dateAdded: firebase.database.ServerValue.TIMESTAMP
-    })
+    });
+    $('#trainData >tbody').append("<tr><td>" + childSnapshot.val().tName + "</td><td>" + childSnapshot.val().tDestination + "</td><td>" + childSnapshot.val().tFrequency + "</td><td>" + moment(arrival).format("hh:mm A") + "</td><td>" + minutes + "</td></tr>");
 
     //clear out entries
     tName = $('#traininput').val("");
